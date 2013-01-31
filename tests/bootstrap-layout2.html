@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <base href="http://localhost/socialcapital/">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="./resources/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+    <link href="./resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet"/>
+    <link href="./resources/css/docs.css" type="text/css" rel="stylesheet"/>
+    <link href="./resources/css/docs-cn.css" type="text/css" rel="stylesheet"/>
+    <link href="./resources/google-code-prettify/prettify.css" type="text/css" rel="stylesheet"/>
+    <script src="./resources/jquery/jquery.js" type="text/javascript"></script>
+    <script src="./resources/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <script src="./resources/holder/holder.js" type="text/javascript"></script>
+    <script src="./resources/google-code-prettify/prettify.js" type="text/javascript"></script>
+    <script src="./resources/js/application.js" type="text/javascript"></script>
+
+    <script src="./resources/js/form2json.js" type="text/javascript"></script>
+    <script src="./resources/js/jsrender.js" type="text/javascript"></script>
+    <script src="./resources/jquery/jquery.observable.js" type="text/javascript"></script>
+    <script src="./resources/jquery/jquery.views.js" type="text/javascript"></script>
+    <script src="./resources/amplify/amplify.js"></script>
+    <script src="./resources/loonghymn/js/orientdb-rest.js"></script>
+    <script id="addressTpl" type="text/x-jsrender">
+        <div class="row-fluid">
+            <div class="row">
+                <div class="control-group">
+                    <label class="control-label" for="mLabel_{{:#index}}"></label>
+
+                    <div class="controls">
+                        <input type="text" id="mLabel_{{:#index}}" name="addressArray[][mLabel]"
+                               data-link="mLabel"/>
+                        <i class="icon-pencil"></i>
+                        <i class="icon-plus"></i>
+                        <i class="icon-minus"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group">
+                    <label class="control-label" for="address1_{{:#index}}">门牌 ：</label>
+
+                    <div class="controls">
+                        <input type="text" class="span12" id="address1_{{:#index}}" name="addressArray[][address1]"
+                               data-link="address1"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="control-group">
+                    <label class="control-label" for="address2_{{:#index}}">街道 ：</label>
+
+                    <div class="controls">
+                        <input type="text" class="span12" id="address2_{{:#index}}" name="addressArray[][address2]"
+                               data-link="address2"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="control-group span6">
+                    <label class="control-label" for="zipcode_{{:#index}}">邮政编码 ：</label>
+
+                    <div class="controls">
+                        <input type="text" class="span12" id="zipcode_{{:#index}}" name="addressArray[][zipcode]"
+                               data-link="zipcode"/>
+                    </div>
+                </div>
+                <div class="control-group span6">
+                    <label class="control-label" for="city_{{:#index}}">市/县/地区 ：</label>
+
+                    <div class="controls">
+                        <input type="text" class="span12" id="city_{{:#index}}" name="addressArray[][city]"
+                               data-link="city"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span6">
+                    <label class="control-label" for="province_{{:#index}}">省/自治区/直辖市 ：</label>
+
+                    <div class="controls">
+                        <input type="text" class="span12" id="province_{{:#index}}" name="addressArray[][province]"
+                               data-link="province"/>
+                    </div>
+                </div>
+                <div class="control-group span6">
+                    <label class="control-label" for="country_{{:#index}}">国家 ：</label>
+
+                    <div class="controls">
+                        <input type="text" class="span12" id="country_{{:#index}}" name="addressArray[][country]"
+                               data-link="country"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </script>
+</head>
+<body>
+<form id="addressForm" class="form-horizontal">
+    <div class="row-fluid" id="addressArea">
+    </div>
+</form>
+
+<script type="text/javascript">
+    var addressArray = [
+        {"mLabel":"单位地址", "country":"中国", "province":"广东省", "city":"深圳市", "address1":"莲花二村39栋221", "address2":"福田区", "zipcode":"518000"},
+        {"mLabel":"家庭地址", "country":"", "province":"", "city":"", "address1":"", "address2":"", "zipcode":""} ,
+        {"mLabel":"投递地址", "country":"", "province":"", "city":"", "address1":"", "address2":"", "zipcode":""}
+    ];
+
+    //var output1 = $("#addressTpl").render(addressArray);
+    //$("#addressForm").html(output1);
+    $.templates("addressTpl", "#addressTpl");
+    $.link.addressTpl("#addressArea", addressArray);
+    //$("#address").html($("#addressTpl").render(addressList));
+    //var json=$("#addressForm").form2json();
+    //alert(JSON.stringify(json));
+    // Observable array change: remove
+    $("#addressForm").on("click", ".icon-plus", function () {
+        $.observable(addressArray).insert(addressArray.length, {"mLabel":"新地址", "country":"", "province":"", "city":"", "address1":"", "address2":"", "zipcode":""});
+        //var json = $('#my-form').serializeObject();
+        //alert(JSON.stringify(json.people));
+        return false;
+    });
+    $("#addressForm").on("click", ".icon-minus", function () {
+        $.observable(addressArray).remove($.view(this).index, 1);
+        //var json = $('#my-form').serializeObject();
+        //alert(JSON.stringify(json.people));
+        return false;
+    });
+
+</script>
+
+</body>
+</html>

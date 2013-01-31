@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="../bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet"/>
+        <link href="../bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+        <script src="../resources/js/jquery.js" type="text/javascript"></script>
+        <script src="../bootstrap/js/bootstrap.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){ 
+                content = $("#content").html();                
+                $("#bodyTpl").html("<div id='navTpl'></div><div id='contentTpl'></div>");
+                $.get("nav.html",function(data){                 
+                    $("#navTpl").html(data);
+                    $("#contentTpl").html(content);
+                    $("#content").html("");
+                }); 
+            });
+        </script>
+    </head>
+    <body>
+        <div id="bodyTpl"></div>
+        <div id="content">
+            <h1 style="span12">This is real content.</h1>
+            <div class="btn-group">
+                <button class="btn">1</button>
+                <button class="btn">2</button>
+                <button class="btn">3</button>
+            </div>
+            <a href="user.do?method=remove" target="ajaxTodo"   >删除</a>
+
+
+        </div>
+    </body>
+</html>
