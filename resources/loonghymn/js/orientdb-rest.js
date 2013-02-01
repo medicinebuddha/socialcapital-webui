@@ -1,5 +1,5 @@
 amplify.request.define( "orientdb_connect", "ajax", {
-    url: "http://localhost:2480/connect/{database}",
+    url: "http://www.loonghymn.net:2480/connect/{database}",
     type:"GET",                   
     dataType: "jsonp",  
     jsonp:"callback",
@@ -10,7 +10,7 @@ amplify.request.define( "orientdb_connect", "ajax", {
 
 
 amplify.request.define( "orientdb_query", "ajax", {
-    url: "http://localhost:2480/query/{database}/sql/{sql}/{limit}",
+    url: "http://www.loonghymn.net:2480/query/{database}/sql/{sql}/{limit}",
     type:"GET",                   
     dataType: "jsonp",  
     jsonp:"callback",
