@@ -7,9 +7,7 @@ amplify.request.define( "orientdb_connect", "ajax", {
     type:"GET",                   
     dataType: "jsonp",  
     jsonp:"callback",
-    jsonpCallback:"jsonpcallback", 
-    username: "admin",
-    password: "admin"                 
+    jsonpCallback:"jsonpcallback"
 });
 
 
@@ -18,7 +16,5 @@ amplify.request.define( "orientdb_query", "ajax", {
     type:"GET",                   
     dataType: "jsonp",  
     jsonp:"callback",
-    jsonpCallback:"jsonpcallback", 
-    username: "admin",
-    password: "admin"                 
+    jsonpCallback:"jsonpcallback"
 });
