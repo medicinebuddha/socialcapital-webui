@@ -1,9 +1,9 @@
 
 
-var url = "http://www.loonghymn.net:2480";
+var baseurl = "http://www.loonghymn.net:2480";
 
 amplify.request.define( "orientdb_connect", "ajax", {
-    url: "http://www.loonghymn.net:2480/connect/{database}",
+    url: baseurl+"/connect/{database}",
     type:"GET",                   
     dataType: "jsonp",  
     jsonp:"callback",
@@ -12,9 +12,13 @@ amplify.request.define( "orientdb_connect", "ajax", {
 
 
 amplify.request.define( "orientdb_query", "ajax", {
-    url: url+"/query/{database}/sql/{sql}/{limit}",
+    url: baseurl+"/query/{database}/sql/{sql}/{limit}",
     type:"GET",                   
+    async : false,
     dataType: "jsonp",  
     jsonp:"callback",
-    jsonpCallback:"jsonpcallback"
+    jsonpCallback:"jsonpcallback",
+    username:"admin",
+    password:"admin"
+    
 });
