@@ -2,7 +2,7 @@
 <html>
     <head>
         <title></title>
-        <base href="http://192.168.0.103/socialcapital/">
+        <base href="/socialcapital/">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content = "width = device-width, initial-scale = 1.0, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable = no" />
 
@@ -54,7 +54,7 @@
     <body>
         <script id="tplPersonContactList" type="text/x-jsrender">
         <tr>
-            <td data-link="fullname"></td>
+            <td ><a href="./app/person-contact.html?uuid={{>uuid}}">{{>fullname}}</a></td>
             <td data-link="mobilePhone"></td>
             <td data-link="company"></td>
             <td data-link="department"></td>
